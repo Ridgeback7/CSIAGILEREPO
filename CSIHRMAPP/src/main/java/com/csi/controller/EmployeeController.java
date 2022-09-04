@@ -1,7 +1,11 @@
 package com.csi.controller;
 
 import com.csi.model.Employee;
+import com.csi.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,29 +13,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
+    @Autowired
+    EmployeeService employeeService;
+
 
     //Geeta Desale	Back End Developement	signUp() at all layers
-    public ResponseEntity<String> signUp(Employee employee)
-    {
+    public ResponseEntity<String> signUp(Employee employee) {
         //pass controller to service layer
-
 
 
         return ResponseEntity.ok("Sucessfully registerd");
     }
 
     //Digambar Shinde signIn() at all layers
-    public ResponseEntity<String> signIn(String email, String pwd)
-    {
-        String msg="";
+    public ResponseEntity<String> signIn(String email, String pwd) {
+        String msg = "";
 
-        if(true)
-        {
-            msg="Sucessfully registerd";
-        }
-        else {
+        if (true) {
+            msg = "Sucessfully registerd";
+        } else {
 
-            msg="Failed to Registered Please try again";
+            msg = "Failed to Registered Please try again";
         }
 
         return ResponseEntity.ok(msg);
@@ -50,6 +52,15 @@ public class EmployeeController {
     //Rohit Jadhav	Back End Developement	sortDataBySalary at all layers
 
     //Nilesh Shirsath	Back End Developement	deleteDataById(id)
+    @DeleteMapping("/deletedatabyid/{empId}")
+    public ResponseEntity<String> deleteDataById(@PathVariable int empId) {
+        employeeService.deleteDataById(empId);
+        ResponseEntity.ok("Data Deleted Successfully");
+    }
+
+
+
+
 
     //Rahul Patil	Back End Developement	deleteAllData()
 
