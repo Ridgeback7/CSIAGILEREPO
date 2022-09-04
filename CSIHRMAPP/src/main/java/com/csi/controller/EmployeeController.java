@@ -1,13 +1,18 @@
 package com.csi.controller;
 
 import com.csi.model.Employee;
+import com.csi.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/")
 @RestController
 public class EmployeeController {
+    @Autowired
+    EmployeeService employeeService;
 
 
     //Geeta Desale	Back End Developement	signUp() at all layers
@@ -51,7 +56,7 @@ public class EmployeeController {
 
     //Nilesh Shirsath	Back End Developement	deleteDataById(id)
 
-    //Rahul Patil	Back End Developement	deleteAllData()
+//Rahul Patil	Back End Developement	deleteAllData()
 
     //Pritam Chavan	Back End Developement	sortDataBySalary()
 
@@ -63,4 +68,12 @@ public class EmployeeController {
 
     //Shubham Punde	Back End Developement | Database Management	"Validate pom.xml configuration | Create a DataBase| Configure  Application Properties File"
 
+
+
+    @DeleteMapping("/deletealldata")
+    public ResponseEntity<String> deleteAllData(){
+        employeeService.deleteAllData();
+        return  ResponseEntity.ok("All Data Deleted Successfully");
+
+    }
 }
