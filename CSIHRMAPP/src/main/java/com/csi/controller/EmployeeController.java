@@ -55,7 +55,7 @@ public class EmployeeController {
     @DeleteMapping("/deletedatabyid/{empId}")
     public ResponseEntity<String> deleteDataById(@PathVariable int empId) {
         employeeService.deleteDataById(empId);
-        ResponseEntity.ok("Data Deleted Successfully");
+      return   ResponseEntity.ok("Data Deleted Successfully");
     }
 
 
