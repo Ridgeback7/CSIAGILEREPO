@@ -1,13 +1,22 @@
 package com.csi.controller;
 
 import com.csi.model.Employee;
+import com.csi.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RequestMapping("/")
 @RestController
 public class EmployeeController {
+
+    @Autowired
+    EmployeeService employeeService;
 
 
     //Geeta Desale	Back End Developement	signUp() at all layers
@@ -46,6 +55,13 @@ public class EmployeeController {
     //Shraddha Rajigare	Back End Developement	getDataById(id) at all layers
 
     //Ulkesh Salunkhe	Back End Developement	Make an Enity class |sortDataByName() at all layers
+     @GetMapping("/sortbyname")
+
+    public ResponseEntity<List<Employee>> sortBname(){
+
+        return ResponseEntity.ok(employeeService.sortbyNM());
+     }
+
 
     //Rohit Jadhav	Back End Developement	sortDataBySalary at all layers
 
