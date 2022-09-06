@@ -1,14 +1,22 @@
 package com.csi.controller;
 
 import com.csi.model.Employee;
+import com.csi.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RequestMapping("/")
 @RestController
 public class EmployeeController {
 
+    @Autowired
+    EmployeeService employeeServiceImpl;
 
     //Geeta Desale	Back End Developement	signUp() at all layers
     public ResponseEntity<String> signUp(Employee employee)
@@ -44,6 +52,10 @@ public class EmployeeController {
     //Ayush Agrawal	 filterDataBySal( sal ) at all layers
 
     //Shraddha Rajigare	Back End Developement	getDataById(id) at all layers
+    @GetMapping("/getdatabyid/{empId}")
+    public ResponseEntity<Optional<Employee>> getDataById(@PathVariable int empId){
+        return ResponseEntity.ok(employeeServiceImpl.getDataById(empId));
+    }
 
     //Ulkesh Salunkhe	Back End Developement	Make an Enity class |sortDataByName() at all layers
 
