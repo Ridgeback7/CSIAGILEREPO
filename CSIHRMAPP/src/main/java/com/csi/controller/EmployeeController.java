@@ -1,14 +1,21 @@
 package com.csi.controller;
 
 import com.csi.model.Employee;
+import com.csi.service.EmployeeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RequestMapping("/")
 @RestController
 public class EmployeeController {
 
+    EmployeeService employeeServiceImpl;
 
     //Geeta Desale	Back End Developement	signUp() at all layers
     public ResponseEntity<String> signUp(Employee employee)
@@ -39,6 +46,11 @@ public class EmployeeController {
 
     //Swapnil Thorat Exception class Generation | saveBulkOfData() at all layers
     //Once done 1) create branch 2)push modification to the subbranch
+    @PostMapping("/savebulkofdata")
+    public ResponseEntity<List<Employee>> saveBulkOfData(@RequestBody List<Employee> employees){
+
+        return new ResponseEntity<>(employeeServiceImpl.saveBulkOfData(employees), HttpStatus.CREATED);
+    }
 
 
     //Ayush Agrawal	 filterDataBySal( sal ) at all layers
